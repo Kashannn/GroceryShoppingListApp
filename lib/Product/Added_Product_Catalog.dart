@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'Added_Product_Catalog.dart';
+import 'AddProduct.dart';
 
-class AddProduct extends StatefulWidget {
-  const AddProduct({Key? key}) : super(key: key);
+class Added_Product_Catalog extends StatefulWidget {
+  const Added_Product_Catalog({super.key});
 
   @override
-  State<AddProduct> createState() => _AddProductState();
+  State<Added_Product_Catalog> createState() => _Added_Product_CatalogState();
 }
 
-class _AddProductState extends State<AddProduct> {
+class _Added_Product_CatalogState extends State<Added_Product_Catalog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +97,10 @@ class _AddProductState extends State<AddProduct> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // Handle the onTap event for the "Popular" container
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>AddProduct()));
                     print('Popular tapped');
                   },
                   child: Container(
@@ -106,7 +109,7 @@ class _AddProductState extends State<AddProduct> {
                     height: 40,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF5856D6),
+                      color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(5.0),
                         bottomLeft: Radius.circular(5.0),
@@ -119,7 +122,7 @@ class _AddProductState extends State<AddProduct> {
                     child: Text(
                       'Popular',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFF5856D6),
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -137,7 +140,7 @@ class _AddProductState extends State<AddProduct> {
                     height: 40,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xFFF5856D6),
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(5.0),
                       ),
@@ -151,34 +154,34 @@ class _AddProductState extends State<AddProduct> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                            builder: (context) =>Added_Product_Catalog()));
+                                builder: (context) =>Added_Product_Catalog()));
                       },
-                    child: Text(
-                    'Catalog',
-                    style: TextStyle(
-                      color: Color(0xFFF5856D6),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      child: Text(
+                        'Catalog',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
                   ),
-                  ),
-                ),
                 )],
             ),
             SizedBox(height: 20),
             Column(
               children: [
-                addIcon('Apples in Fruits'),
-                addIcon('Avocado in Fruits'),
-                addIcon('Coffee Beans in Coffee'),
-                addIcon('Still Water in Beverages'),
-                addIcon('Carrots in Vegetables'),
-                addIcon('Spinach (fresh) in Vegetables'),
-                addIcon('Jeans in Clothes & Shoes'),
-                addIcon('Sneakers in Clothes & Shoes'),
-                addIcon('Micellar Water in Personal '),
-                addIcon('Shampoo in Personal '),
-                addIcon('Aspirin in Pharmacy'),
+                addIcon('Accessories','Handbag'),
+                addIcon('Alcoholic Drinks','Bucket'),
+                addIcon('Baby Goods','Teddy-bear'),
+                addIcon('Beverages (non-alcoholic)','Water'),
+                addIcon('Bakery','Cupcake'),
+                addIcon('Canned Goods','Tomato'),
+                addIcon('Cleaners','Cleaner'),
+                addIcon('Clothes & Shoes','Shirt'),
+                addIcon('Coffee, Tea & Cocoa ','Cup'),
+                addIcon('Dairy','Ingredients'),
+                addIcon('Dry Goods','Almond'),
               ],
             ),
           ],
@@ -187,7 +190,7 @@ class _AddProductState extends State<AddProduct> {
     );
   }
 
-  Widget addIcon(String text) {
+  Widget addIcon(String text, String imageName) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       padding: const EdgeInsets.all(16),
@@ -199,26 +202,54 @@ class _AddProductState extends State<AddProduct> {
         ),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align children at the start and end of the row
         children: [
+          Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Color(0xFFF5856D6),
+                    width: 3,
+                  ),
+                ),
+                child: Center(
+                  child: SvgPicture.asset(
+                    'assets/catalog/$imageName.svg', // Assuming your images are in the 'assets' folder
+                    height: 24,
+                    width: 24,
+                    alignment: Alignment.topLeft,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
           SvgPicture.asset(
-            'assets/Add.svg',
+            'assets/catalog/Chevron_right.svg',
             height: 24,
             width: 24,
-            alignment: Alignment.topLeft,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              text,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
+            alignment: Alignment.topRight,
           ),
         ],
       ),
     );
   }
+
+
+
 }
