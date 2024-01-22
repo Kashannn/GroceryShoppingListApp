@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'WelcomePage.dart';
+import 'package:groceryshoppinglistapp/WelcomePage.dart';
+
+import 'Profile/EditProfile.dart';
+import 'Profile/Profile.dart';
+import 'Setting/Settings.dart';
 
 void  main() async {
   runApp(MyApp());
@@ -11,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
+      home: Settings(),
     );
   }
 }

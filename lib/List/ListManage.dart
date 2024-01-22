@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import '../Trash/NoTrash.dart';
 import 'OneListNoProduct.dart';
 
 class ListManage extends StatefulWidget {
-  const ListManage({super.key});
+  const ListManage({Key? key}) : super(key: key);
 
   @override
   State<ListManage> createState() => _ListManageState();
 }
 
 class _ListManageState extends State<ListManage> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class _ListManageState extends State<ListManage> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 140,
-            child:  Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -41,7 +43,8 @@ class _ListManageState extends State<ListManage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>  OneListNoProduct()),
+                          builder: (context) => OneListNoProduct(),
+                        ),
                       );
                     },
                     child: Text(
@@ -79,7 +82,7 @@ class _ListManageState extends State<ListManage> {
                       borderRadius: BorderRadius.circular(12),
                       color: const Color(0xffa1a1a1),
                     ),
-                    child:  Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
@@ -96,7 +99,6 @@ class _ListManageState extends State<ListManage> {
                           ),
                         ),
                       ],
-
                     ),
                   ),
                 ),
@@ -107,7 +109,7 @@ class _ListManageState extends State<ListManage> {
                       borderRadius: BorderRadius.circular(12),
                       color: const Color(0xff007aff),
                     ),
-                    child:  Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
@@ -127,7 +129,6 @@ class _ListManageState extends State<ListManage> {
                     ),
                   ),
                 ),
-
                 const SizedBox(width: 8),
                 Expanded(
                   child: Container(
@@ -135,7 +136,7 @@ class _ListManageState extends State<ListManage> {
                       borderRadius: BorderRadius.circular(12),
                       color: const Color(0xfff43425),
                     ),
-                    child:  Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(
@@ -168,7 +169,7 @@ class _ListManageState extends State<ListManage> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align elements with spacing
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
@@ -185,8 +186,6 @@ class _ListManageState extends State<ListManage> {
                         color: Colors.white,
                       ),
                     ),
-
-                    // Text "To buy later"
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
@@ -207,7 +206,7 @@ class _ListManageState extends State<ListManage> {
                       backgroundImage: AssetImage('assets/person.png'),
                     ),
                     Positioned(
-                      right: 10, // Adjust right position for partial overlap without clipping
+                      right: 10,
                       child: CircleAvatar(
                         radius: 30,
                         backgroundImage: AssetImage('assets/person2.png'),
@@ -218,7 +217,6 @@ class _ListManageState extends State<ListManage> {
               ],
             ),
           ),
-
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -249,6 +247,22 @@ class _ListManageState extends State<ListManage> {
             label: "Setting", // Example label for the third item
           ),
         ],
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+
+            // Use Navigator to navigate to different screens
+            if (_currentIndex == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NoTrash(),
+                ),
+              );
+            }
+          });
+        },
       ),
     );
   }
