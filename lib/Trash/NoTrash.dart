@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+// NoTrash.dart
 
+import 'package:flutter/material.dart';
+
+import '../BottomNavigationBarWidget.dart';
+import '../List/NoList.dart';
+import '../Setting/Settings.dart';
 import 'Trash_Available.dart';
+
 
 
 class NoTrash extends StatefulWidget {
@@ -12,6 +17,8 @@ class NoTrash extends StatefulWidget {
 }
 
 class _NoTrashState extends State<NoTrash> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +38,7 @@ class _NoTrashState extends State<NoTrash> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Trash_Available(), // Removed 'const'
+                          builder: (context) => Trash_Available(),
                         ),
                       );
                     },
@@ -45,7 +52,6 @@ class _NoTrashState extends State<NoTrash> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -63,40 +69,39 @@ class _NoTrashState extends State<NoTrash> {
           ),
         ],
       ),
-      bottomNavigationBar: buildBottomNavigationBar(),
+      bottomNavigationBar: BottomNavigationBarWidget(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+
+            if (_currentIndex == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Trash_Available(),
+                ),
+              );
+            }
+            if (_currentIndex == 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListWidget(),
+                ),
+              );
+            }
+            if (_currentIndex == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Settings(),
+                ),
+              );
+            }
+          });
+        },
+      ),
     );
   }
-}
-Widget buildBottomNavigationBar() {
-  return BottomNavigationBar(
-    backgroundColor: Colors.white,
-    items: [
-      buildBottomNavigationBarItem(
-        iconPath: 'assets/List.svg',
-        label: "Lists",
-      ),
-      buildBottomNavigationBarItem(
-        iconPath: 'assets/Trash.svg',
-        label: "Trash",
-      ),
-      buildBottomNavigationBarItem(
-        iconPath: 'assets/Setting.svg',
-        label: "Setting",
-      ),
-    ],
-  );
-}
-
-BottomNavigationBarItem buildBottomNavigationBarItem({
-  required String iconPath,
-  required String label,
-}) {
-  return BottomNavigationBarItem(
-    icon: SvgPicture.asset(
-      iconPath,
-      width: 32,
-      height: 32,
-    ),
-    label: label,
-  );
 }

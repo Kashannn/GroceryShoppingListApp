@@ -159,7 +159,7 @@ class _Trash_ManageState extends State<Trash_Manage> {
 
         ],
       ),
-      bottomNavigationBar: buildBottomNavigationBar(),
+
     );
   }
 }

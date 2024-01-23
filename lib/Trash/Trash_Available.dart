@@ -110,7 +110,7 @@ class _Trash_AvailableState extends State<Trash_Available> {
           )
         ],
       ),
-      bottomNavigationBar: buildBottomNavigationBar(),
+
     );
   }
 }

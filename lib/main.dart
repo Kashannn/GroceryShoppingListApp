@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:groceryshoppinglistapp/WelcomePage.dart';
 
+import 'Category/AddCategory.dart';
+import 'Product/EditOneProduct.dart';
+import 'Product/OneListWithProduct.dart';
+import 'Product/OneListWithProductsManage.dart';
 import 'Profile/EditProfile.dart';
 import 'Profile/Profile.dart';
 import 'Setting/Settings.dart';
@@ -15,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Settings(),
+      home: WelcomePage(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../Setting/Settings.dart';
 import '../Trash/NoTrash.dart';
 import 'OneListNoProduct.dart';
 
@@ -181,9 +182,10 @@ class _ListManageState extends State<ListManage> {
                         shape: BoxShape.circle,
                         color: Color(0xFF524C8C),
                       ),
-                      child: const Icon(
-                        Icons.shopping_basket_sharp,
-                        color: Colors.white,
+                      child: SvgPicture.asset(
+                        'assets/Basket.svg',
+                        width: 20, // Adjust the width as needed
+                        height: 20, // Adjust the height as needed
                       ),
                     ),
                     const Padding(
@@ -252,12 +254,19 @@ class _ListManageState extends State<ListManage> {
           setState(() {
             _currentIndex = index;
 
-            // Use Navigator to navigate to different screens
             if (_currentIndex == 1) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => NoTrash(),
+                ),
+              );
+            }
+            if (_currentIndex == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Settings(),
                 ),
               );
             }

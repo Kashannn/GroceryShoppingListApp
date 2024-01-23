@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../BottomNavigationBarWidget.dart';
+import '../Trash/Trash_Available.dart';
 import 'AddList.dart';
 
 class ListWidget extends StatefulWidget {
@@ -11,6 +13,7 @@ class ListWidget extends StatefulWidget {
 }
 
 class _ListWidgetState extends State<ListWidget> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,34 +74,22 @@ class _ListWidgetState extends State<ListWidget> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/List.svg',
-              width: 32,
-              height: 32,
-            ),
-            label: "Lists",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/Trash_icon.svg', // Assuming you want the same icon for other items
-              width: 32,
-              height: 32,
-            ),
-            label: "Trash", // Provide a meaningful label for the second item
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/Setting.svg', // Adjust the path if needed for a different icon
-              width: 32,
-              height: 32,
-            ),
-            label: "Setting", // Example label for the third item
-          ),
-        ],
+      bottomNavigationBar:BottomNavigationBarWidget(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+
+            if (_currentIndex == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Trash_Available(),
+                ),
+              );
+            }
+          });
+        },
       ),
     );
   }

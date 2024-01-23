@@ -184,7 +184,9 @@ class _SettingsState extends State<Settings> {
           ),
         ],
       ),
-      bottomNavigationBar: buildBottomNavigationBar(),
+
+
+
     );
   }
 
